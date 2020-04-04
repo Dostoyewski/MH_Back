@@ -1,9 +1,12 @@
 from django.db import models
 
-STATUS = (
-    (1, "STATUS_DEFAULT"),
-    (2, "STATUS_REQUESTED"),
-    (3, "STATUS_APPROVED"),
+GRADE = (
+    (0, "Рядовой"),
+    (1, "Прапорщик"),
+    (2, "Лейтенант"),
+    (3, "Майор"),
+    (4, "Полковник"),
+    (5, "Генерал"),
 )
 
 
@@ -14,7 +17,8 @@ class User(models.Model):
     """
     name = models.CharField(max_length=200, unique=False)
     surname = models.CharField(max_length=200, unique=False)
-    stage = models.IntegerField(default=0)
+    stage = models.IntegerField(choices=GRADE, default=0)
+    karma = models.IntegerField(default=0)
     urlVK = models.CharField(max_length=100, blank=True)
 
 
