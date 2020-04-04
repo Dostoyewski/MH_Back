@@ -19,7 +19,7 @@ class User(models.Model):
     surname = models.CharField(max_length=200, unique=False)
     stage = models.IntegerField(choices=GRADE, default=0)
     exp = models.IntegerField(default=0)
-    urlVK = models.CharField(max_length=100, blank=True)
+    urlVK = models.CharField(max_length=100, blank=True, unique=True)
 
 
 class Hero(models.Model):
