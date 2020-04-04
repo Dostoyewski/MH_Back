@@ -28,7 +28,20 @@ class Hero(models.Model):
     """
     name = models.CharField(max_length=200, unique=False)
     surname = models.CharField(max_length=200, unique=False)
+    father_name = models.CharField(max_length=200, unique=False, blank=True)
+    # Short info about Ded
+    info = models.CharField(max_length=1000, unique=False, default="Нет информации")
     member = models.ForeignKey(User, on_delete=models.CASCADE)
+    # Ded's birth date
+    bd = models.DateField(null=True, blank=True)
+    # Ded's death date
+    dd = models.DateField(null=True, blank=True)
+    # Military unit name
+    army_name = models.CharField(max_length=50, blank=True, unique=False)
+    # Military unit short name
+    army_name_short = models.CharField(max_length=10, blank=True, unique=False)
+    # Path of Ded's military unit
+    path = models.CharField(max_length=1000, blank=True, unique=False)
 
 
 class Photo(models.Model):
