@@ -32,6 +32,7 @@ class Hero(models.Model):
     # Short info about Ded
     info = models.TextField(max_length=1000, unique=False, default="Нет информации")
     member = models.ForeignKey(User, on_delete=models.CASCADE)
+    stage = models.CharField(max_length=100, default=0)
     # Ded's birth date
     bd = models.DateField(null=True, blank=True)
     # Ded's death date

@@ -4,13 +4,13 @@ from .models import User, Hero, Photo
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('name', 'surname', 'stage', 'urlVK')
+    list_display = ('name', 'surname', 'exp', 'stage', 'urlVK')
     search_fields = ['name', 'surname', 'stage', 'urlVK']
 
 
 class HeroAdmin(admin.ModelAdmin):
-    list_display = ('name', 'surname', 'member')
-    search_fields = ['name', 'surname', 'member']
+    list_display = ('name', 'surname', 'father_name', 'stage', 'bd', 'dd', 'army_name', 'member')
+    search_fields = ['name', 'surname', 'father_name', 'stage', 'bd', 'dd', 'army_name', 'member']
 
 
 class PhotoAdmin(admin.ModelAdmin):
