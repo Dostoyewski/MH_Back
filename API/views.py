@@ -146,3 +146,23 @@ def photo_detail(request, pk):
     elif request.method == 'DELETE':
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+def get_heroes(request, pk):
+    """
+
+    :param request:
+    :param pk:
+    :return:
+    """
+    print(pk)
+    try:
+        snippet = Hero.objects.filter(member__urlVK=pk)
+        print(snippet)
+    except Hero.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = HeroSerializer(snippet, many=True)
+        return Response(serializer.data)

@@ -1,14 +1,19 @@
 import requests
 import datetime
+from pyquery import PyQuery as pq
 
-url = 'https://cdn.pamyat-naroda.ru/data/cCN8HcSLvsez-he5BxqwxA/1585997073/pamyat/map_army_unit_label/_search'   
+url = "https://cdn.pamyat-naroda.ru/ind/pamyat/map_army_unit_label/_search/"
 
 headers = {
     'origin': 'https://pamyat-naroda.ru',
     'referer': 'https://pamyat-naroda.ru/warunit/402%20%D1%81%D0%BF/?backurl=/warunit/?q%3D402%20%D1%81%D0%BF%26page%3D1',
     'sec-fetch-dest': 'empty',
     'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site'
+    'sec-fetch-site': 'same-site',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0',
+    'Accept': 'application/json, text/javascript, */*; q=0.01',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'X-Requested-With': 'XMLHttpRequest'
 }    
 
 data1 = '{\"query\":{\"bool\":{\"must\":[{\"match_phrase\":{\"division_name\":{\"query\":\"'
@@ -63,3 +68,7 @@ def get_path(army_name):
     '''
                 
     return valid_info
+
+
+if __name__ == "__main__":
+    get_path('qwe')
