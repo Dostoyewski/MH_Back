@@ -78,7 +78,7 @@ class PhotoSerializer(serializers.Serializer):
 
     """
     id = serializers.IntegerField(read_only=True)
-    year = serializers.IntegerField()
+    year = serializers.IntegerField(default=0)
     img = serializers.ImageField()
 
     def create(self, validated_data):
