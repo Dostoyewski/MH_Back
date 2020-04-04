@@ -94,6 +94,5 @@ class PhotoDetailSerializer(serializers.ModelSerializer):
         """
         instance.img = validated_data.get('img', instance.img)
         instance.year = validated_data.get('year', instance.year)
-        instance.hero = validated_data.get('hero', instance.hero)
         instance.save()
         return instance
