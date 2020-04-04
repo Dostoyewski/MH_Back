@@ -95,7 +95,7 @@ def hero_detail(request, pk):
     """
     Retrieve, update or delete hero
     :param request: request
-    :param pk: User's id in db
+    :param pk: Hero's id in db
     :return: Response
     """
     try:
@@ -122,9 +122,9 @@ def hero_detail(request, pk):
 @api_view(['GET', 'PUT', 'DELETE'])
 def photo_detail(request, pk):
     """
-    Retrieve, update or delete hero
+    Retrieve, update or delete photo
     :param request: request
-    :param pk: User's id in db
+    :param pk: Photo's id in db
     :return: Response
     """
     try:

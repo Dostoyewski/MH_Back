@@ -79,7 +79,7 @@ class PhotoSerializer(serializers.Serializer):
     """
     id = serializers.IntegerField(read_only=True)
     year = serializers.IntegerField()
-    img = serializers.ImageField()
+    #img = serializers.ImageField()
 
     def create(self, validated_data):
         """
@@ -92,7 +92,7 @@ class PhotoSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         """
         Update and return an existing `Photo` instance, given the validated data.
-        This function updates only stage and experience.
+        This finction updates only year
         :param instance: existing `Photo` instance
         :param validated_data: validated data
         :return: updated `Photo` instance
