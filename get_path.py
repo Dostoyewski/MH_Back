@@ -31,9 +31,11 @@ def get_path(army_name):
     
     valid_info = {}
     
-    dates = []
+    dates = [] 
+    
     for i in result:
-        dates.append(i['_source']['date_from'])
+        if i['_source']['date_from'] != None:
+            dates.append(i['_source']['date_from'])
 
     sdates = [datetime.datetime.strptime(ts, "%Y-%m-%d") for ts in dates]
     sdates.sort()
