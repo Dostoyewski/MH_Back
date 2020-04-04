@@ -4,8 +4,8 @@ from .models import User, Hero, Photo
 
 class UserSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    status = serializers.IntegerField(default=1)
-    user_id = serializers.CharField(default=0)
+    stage = serializers.IntegerField(default=0)
+    exp = serializers.CharField(default=0)
 
     def create(self, validated_data):
         """
