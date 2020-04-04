@@ -3,9 +3,12 @@ from .models import User, Hero, Photo
 
 
 class UserSerializer(serializers.Serializer):
+    """
+
+    """
     id = serializers.IntegerField(read_only=True)
     stage = serializers.IntegerField(default=0)
-    exp = serializers.CharField(default=0)
+    exp = serializers.IntegerField(default=0)
 
     def create(self, validated_data):
         """
