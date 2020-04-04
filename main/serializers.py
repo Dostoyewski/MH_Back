@@ -4,11 +4,14 @@ from .models import User, Hero, Photo
 
 class UserSerializer(serializers.Serializer):
     """
-
+    Serializer for user model
     """
     id = serializers.IntegerField(read_only=True)
     stage = serializers.IntegerField(default=0)
     exp = serializers.IntegerField(default=0)
+    name = serializers.CharField(max_length=200)
+    surname = serializers.CharField(max_length=200)
+    urlVK = serializers.CharField(max_length=200)
 
     def create(self, validated_data):
         """
