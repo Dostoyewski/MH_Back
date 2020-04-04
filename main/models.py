@@ -1,5 +1,11 @@
 from django.db import models
 
+STATUS = (
+    (1, "STATUS_DEFAULT"),
+    (2, "STATUS_REQUESTED"),
+    (3, "STATUS_APPROVED"),
+)
+
 
 # Create your models here.
 class User(models.Model):
@@ -9,7 +15,6 @@ class User(models.Model):
     name = models.CharField(max_length=200, unique=False)
     surname = models.CharField(max_length=200, unique=False)
     stage = models.IntegerField(default=0)
-    members = models.TextField(max_length=500, blank=True, default='')
     urlVK = models.CharField(max_length=100, blank=True)
 
 
