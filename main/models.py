@@ -30,7 +30,7 @@ class Hero(models.Model):
     surname = models.CharField(max_length=200, unique=False)
     father_name = models.CharField(max_length=200, unique=False, blank=True)
     # Short info about Ded
-    info = models.CharField(max_length=1000, unique=False, default="Нет информации")
+    info = models.TextField(max_length=1000, unique=False, default="Нет информации")
     member = models.ForeignKey(User, on_delete=models.CASCADE)
     # Ded's birth date
     bd = models.DateField(null=True, blank=True)
@@ -41,7 +41,7 @@ class Hero(models.Model):
     # Military unit short name
     army_name_short = models.CharField(max_length=10, blank=True, unique=False)
     # Path of Ded's military unit
-    path = models.CharField(max_length=1000, blank=True, unique=False)
+    path = models.TextField(max_length=1000, blank=True, unique=False)
 
 
 class Photo(models.Model):

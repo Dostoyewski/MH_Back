@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics
 from API.serializers import UserDetailSerializer, HeroDetailSerializer, PhotoDetailSerializer
 from main.models import User, Photo, Hero
-from main.serializers import UserSerializer
+from main.serializers import UserSerializer, HeroSerializer, PhotoSerializer
 from API.permissions import IsOwnerOrReadOnly
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -80,6 +80,64 @@ def user_detail(request, pk):
 
     elif request.method == 'PUT':
         serializer = UserSerializer(snippet, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        snippet.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def hero_detail(request, pk):
+    """
+    Retrieve, update or delete hero
+    :param request: request
+    :param pk: User's id in db
+    :return: Response
+    """
+    try:
+        snippet = Hero.objects.get(pk=pk)
+    except Hero.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = HeroSerializer(snippet)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = HeroSerializer(snippet, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        snippet.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def photo_detail(request, pk):
+    """
+    Retrieve, update or delete hero
+    :param request: request
+    :param pk: User's id in db
+    :return: Response
+    """
+    try:
+        snippet = Photo.objects.get(pk=pk)
+    except Photo.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = PhotoSerializer(snippet)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = PhotoSerializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

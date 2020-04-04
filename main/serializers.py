@@ -47,7 +47,6 @@ class HeroSerializer(serializers.Serializer):
     army_name = serializers.CharField(default='Не задано')
     army_name_short = serializers.CharField(default='Не задано')
 
-
     def create(self, validated_data):
         """
         Create and return a new `Hero` instance, given the validated data.
@@ -59,7 +58,7 @@ class HeroSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         """
         Update and return an existing `Hero` instance, given the validated data.
-        This function updates only stage and experience.
+        This function updates all hero params
         :param instance: existing `Hero` instance
         :param validated_data: validated data
         :return: updated `Hero` instance
@@ -80,7 +79,7 @@ class PhotoSerializer(serializers.Serializer):
     """
     id = serializers.IntegerField(read_only=True)
     year = serializers.IntegerField()
-
+    img = serializers.ImageField()
 
     def create(self, validated_data):
         """
