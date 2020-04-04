@@ -124,7 +124,7 @@ def photo_detail(request, pk):
     """
     Retrieve, update or delete photo
     :param request: request
-    :param pk: Photo's id in db
+    :param pk: Photo's id in DB
     :return: Response
     """
     try:
@@ -151,15 +151,13 @@ def photo_detail(request, pk):
 @api_view(['GET'])
 def get_heroes(request, pk):
     """
-
-    :param request:
-    :param pk:
-    :return:
+    This function return all User's heroes
+    :param request: request data
+    :param pk: User's VK id
+    :return: JSON with heroes
     """
-    print(pk)
     try:
         snippet = Hero.objects.filter(member__urlVK=pk)
-        print(snippet)
     except Hero.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 

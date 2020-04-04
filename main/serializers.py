@@ -37,7 +37,7 @@ class UserSerializer(serializers.Serializer):
         
 class HeroSerializer(serializers.Serializer):
     """
-
+    Hero serializer
     """
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(default='Не задано')
@@ -75,11 +75,12 @@ class HeroSerializer(serializers.Serializer):
 
 class PhotoSerializer(serializers.Serializer):
     """
-
+    Photo serializer
     """
     id = serializers.IntegerField(read_only=True)
     year = serializers.IntegerField()
-    #img = serializers.ImageField()
+    img = serializers.ImageField()
+    isAvatar = serializers.BooleanField(default=False)
 
     def create(self, validated_data):
         """
@@ -98,6 +99,7 @@ class PhotoSerializer(serializers.Serializer):
         :return: updated `Photo` instance
         """
         instance.year = validated_data.get('year', instance.year)
+        instance.isAvatar = validated_data('isAvatar', instance.isAvatar)
         instance.save()
         return instance
 

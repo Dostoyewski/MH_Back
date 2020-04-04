@@ -52,4 +52,6 @@ class Photo(models.Model):
     img = models.ImageField()
     year = models.IntegerField()
     hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
+    # Hero's profile avatar flag
+    isAvatar = models.BooleanField(default=False)
 
