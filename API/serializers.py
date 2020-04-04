@@ -25,7 +25,13 @@ class UserDetailSerializer(serializers.ModelSerializer):
         :param validated_data: request data
         :return: updated `User` instance
         """
-        # TODO: Write fields setters
+        instance.name = validated_data.get('name', instance.name)
+        instance.surname = validated_data.get('surname', instance.surname)
+        instance.stage = validated_data.get('stage', instance.stage)
+        instance.karma = validated_data.get('karma', instance.karma)
+        instance.urlVK = validated_data.get('urlVK', instance.urlVK)
+        instance.save()
+        return instance
 
 
 class HeroDetailSerializer(serializers.ModelSerializer):
@@ -51,7 +57,16 @@ class HeroDetailSerializer(serializers.ModelSerializer):
         :param validated_data: request data
         :return: updated `Hero` instance
         """
-        # TODO: Write fields setters
+        instance.name = validated_data.get('name', instance.name)
+        instance.surname = validated_data.get('surname', instance.surname)
+        instance.father_name = validated_data.get('father_name', instance.father_name)
+        instance.info = validated_data.get('info', instance.info)
+        instance.bd = validated_data.get('bd', instance.bd)
+        instance.dd = validated_data.get('dd', instance.dd)
+        instance.army_name = validated_data.army_name('army_name', instance.army_name)
+        instance.army_name_short = validated_data.get('army_name_short', instance.army_name_short)
+        instance.save()
+        return instance
 
 
 class PhotoDetailSerializer(serializers.ModelSerializer):
@@ -68,7 +83,7 @@ class PhotoDetailSerializer(serializers.ModelSerializer):
         :param validated_data: request data
         :return: new `Photo` instance
         """
-        return User.objects.create(**validated_data)
+        return Photo.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         """
@@ -77,4 +92,8 @@ class PhotoDetailSerializer(serializers.ModelSerializer):
         :param validated_data: request data
         :return: updated `Photo` instance
         """
-        # TODO: Write fields setters
+        instance.img = validated_data.get('img', instance.img)
+        instance.year = validated_data.get('year', instance.year)
+        instance.hero = validated_data.get('hero', instance.hero)
+        instance.save()
+        return instance
