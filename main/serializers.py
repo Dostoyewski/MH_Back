@@ -92,7 +92,7 @@ class PhotoSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         """
         Update and return an existing `Photo` instance, given the validated data.
-        This finction updates only year
+        This function updates only stage and experience.
         :param instance: existing `Photo` instance
         :param validated_data: validated data
         :return: updated `Photo` instance
