@@ -172,3 +172,4 @@ def get_heroes(request, pk):
             data['avatar'] = PhotoSerializer(Photo.objects.filter(hero__pk=obj.pk, isAvatar=True), many=True).data
             response.append(data)
         return Response(response)
+

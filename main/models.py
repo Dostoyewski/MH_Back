@@ -55,3 +55,19 @@ class Photo(models.Model):
     # Hero's profile avatar flag
     isAvatar = models.BooleanField(default=False)
 
+
+class Post(models.Model):
+    """
+    Post model
+    """
+    hero = models.ForeignKey(Hero, on_delete=models.CASCADE)
+    like = models.IntegerField()
+
+
+class Comment(models.Model):
+    """
+    Comment post
+    """
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    urlVK = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.CharField(max_length=200)
