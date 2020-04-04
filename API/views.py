@@ -164,5 +164,11 @@ def get_heroes(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = HeroSerializer(snippet, many=True)
-        return Response(serializer.data)
+        response = []
+        for obj in snippet:
+            serializer = HeroSerializer(obj)
+            data = serializer.data
+            data['photos'] = PhotoSerializer(Photo.objects.filter(hero__pk=obj.pk, isAvatar=False), many=True).data
+            data['avatar'] = PhotoSerializer(Photo.objects.filter(hero__pk=obj.pk, isAvatar=True), many=True).data
+            response.append(data)
+        return Response(response)
