@@ -6,6 +6,7 @@ app_name = 'API'
 urlpatterns = [
     path('user/create/', UserCreateView.as_view()),
     path('user/getlist/', UserListView.as_view()),
+    path('user/detail/<int:pk>', user_detail),
     path('hero/create/', HeroCreateView.as_view()),
     path('hero/getlist/', HeroListView.as_view()),
     path('photo/create/', PhotoCreateView.as_view()),
