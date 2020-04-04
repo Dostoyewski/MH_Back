@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'MH_Back.urls'
 
 TEMPLATES = [

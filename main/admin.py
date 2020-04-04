@@ -14,8 +14,8 @@ class HeroAdmin(admin.ModelAdmin):
 
 
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ('img', 'year', 'hero')
-    list_display = ['img', 'year', 'hero']
+    list_display = ('img', 'year', 'hero', 'isAvatar')
+    list_display = ['img', 'year', 'hero', 'isAvatar']
 
 
 admin.site.register(User, UserAdmin)

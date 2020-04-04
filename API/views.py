@@ -105,7 +105,10 @@ def hero_detail(request, pk):
 
     if request.method == 'GET':
         serializer = HeroSerializer(snippet)
-        return Response(serializer.data)
+        data = serializer.data
+        data['photos'] = PhotoSerializer(Photo.objects.filter(hero__pk=pk, isAvatar=False), many=True).data
+        data['avatar'] = PhotoSerializer(Photo.objects.filter(hero__pk=pk, isAvatar=True), many=True).data
+        return Response(data)
 
     elif request.method == 'PUT':
         serializer = HeroSerializer(snippet, data=request.data)
@@ -117,7 +120,6 @@ def hero_detail(request, pk):
     elif request.method == 'DELETE':
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def photo_detail(request, pk):
