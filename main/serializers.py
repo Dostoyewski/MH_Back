@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Hero, Photo
+from .models import User, Hero, Photo, Post, Comment
 
 
 class UserSerializer(serializers.Serializer):
@@ -104,3 +104,62 @@ class PhotoSerializer(serializers.Serializer):
         instance.save()
         return instance
 
+
+class PostSerializer(serializers.Serializer):
+    """
+    Post serializer
+    """
+    id = serializers.IntegerField(read_only=True)
+    like = serializers.IntegerField()
+    hero = serializers.CharField(source='hero.pk', read_only=True)
+
+    def create(self, validated_data):
+        """
+        Create and return a new `Post` instance, given the validated data.
+        :param validated_data: checked data
+        :return: new `Post` instance
+        """
+        return Post.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        """
+        Update and return an existing `Post` instance, given the validated data.
+        This function updates only stage and experience.
+        :param instance: existing `Post` instance
+        :param validated_data: validated data
+        :return: updated `Post` instance
+        """
+        instance.like = validated_data.get('like', instance.like)
+        instance.save()
+        return instance
+
+
+class CommentSerializer(serializers.Serializer):
+    """
+    Comment serializer
+    """
+    id = serializers.IntegerField(read_only=True)
+    text = serializers.CharField(default='Не задано')
+    hero = serializers.CharField(source='hero.pk', read_only=True)
+    urlVK = serializers.CharField(source='urlVK.pk', read_only=True)
+
+
+    def create(self, validated_data):
+        """
+        Create and return a new `Comment` instance, given the validated data.
+        :param validated_data: checked data
+        :return: new `Comment` instance
+        """
+        return Comment.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        """
+        Update and return an existing `Comment` instance, given the validated data.
+        This function updates only stage and experience.
+        :param instance: existing `Comment` instance
+        :param validated_data: validated data
+        :return: updated `Comment` instance
+        """
+        instance.text = validated_data.get('text', instance.text)
+        instance.save()
+        return instance

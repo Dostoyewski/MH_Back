@@ -14,4 +14,12 @@ urlpatterns = [
     path('photo/create/', PhotoCreateView.as_view()),
     path('photo/getlist/', PhotoListView.as_view()),
     path('photo/detail/<int:pk>', photo_detail),
+    path('Post/create/', PostCreateView.as_view()),
+    path('Post/getlist/', PostListView.as_view()),
+    path('Post/detail/<int:pk>', post_detail),
+    path('Comment/create/', CommentCreateView.as_view()),
+    path('Comment/getlist/', CommentListView.as_view()),
+    path('Comment/detail/<int:pk>', comment_detail),
+
+
 ]

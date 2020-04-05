@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from main.models import User, Hero, Photo
+from main.models import User, Hero, Photo, Comment, Post
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -95,5 +95,91 @@ class PhotoDetailSerializer(serializers.ModelSerializer):
         instance.img = validated_data.get('img', instance.img)
         instance.year = validated_data.get('year', instance.year)
         instance.isAvatar = validated_data.get('isAvatar', instance.isAvatar)
+        instance.save()
+        return instance
+
+class PhotoDetailSerializer(serializers.ModelSerializer):
+    """
+    Serializer for photos and information about it
+    """
+    class Meta:
+        model = Photo
+        fields = '__all__'
+
+    def create(self, validated_data):
+        """
+        Create a new `Photo` instance
+        :param validated_data: request data
+        :return: new `Photo` instance
+        """
+        return Photo.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        """
+        Update current `Photo` instance
+        :param instance: existing `Photo` instance
+        :param validated_data: request data
+        :return: updated `Photo` instance
+        """
+        instance.img = validated_data.get('img', instance.img)
+        instance.year = validated_data.get('year', instance.year)
+        instance.isAvatar = validated_data.get('isAvatar', instance.isAvatar)
+        instance.save()
+        return instance
+
+
+
+class PostDetailSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Post and information about it
+    """
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+    def create(self, validated_data):
+        """
+        Create a new `Post` instance
+        :param validated_data: request data
+        :return: new `Post` instance
+        """
+        return Post.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        """
+        Update current `Post` instance
+        :param instance: existing `Post` instance
+        :param validated_data: request data
+        :return: updated `Post` instance
+        """
+        instance.like = validated_data.get('like', instance.like)
+        instance.save()
+        return instance
+
+
+class CommentDetailSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Post and information about it
+    """
+    class Meta:
+        model = Comment
+        fields = '__all__'
+
+    def create(self, validated_data):
+        """
+        Create a new `Comment` instance
+        :param validated_data: request data
+        :return: new `Comment` instance
+        """
+        return Comment.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        """
+        Update current `Comment` instance
+        :param instance: existing `Comment` instance
+        :param validated_data: request data
+        :return: updated `Comment` instance
+        """
+        instance.text = validated_data.get('text', instance.text)
         instance.save()
         return instance
