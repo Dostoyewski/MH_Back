@@ -156,6 +156,7 @@ def hero_detail(request, pk):
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def photo_detail(request, pk):
     """
@@ -264,7 +265,10 @@ def get_heroes(request, pk):
             serializer = HeroSerializer(obj)
             data = serializer.data
             data['photos'] = PhotoSerializer(Photo.objects.filter(hero__pk=obj.pk, isAvatar=False), many=True).data
-            data['avatar'] = PhotoSerializer(Photo.objects.filter(hero__pk=obj.pk, isAvatar=True), many=True).data
+            try:
+                data['avatar'] = PhotoSerializer(Photo.objects.filter(hero__pk=obj.pk, isAvatar=True), many=True).data[0]['img']
+            except IndexError:
+                data['avatar'] = None
             response.append(data)
         return Response(response)
 
