@@ -20,6 +20,7 @@ urlpatterns = [
     path('comment/create/', CommentCreateView.as_view()),
     path('comment/getlist/', CommentListView.as_view()),
     path('comment/detail/<int:pk>', comment_detail),
-
-
+    path('get_path_pk/<int:pk>', get_path_pk),
+    path('get_path_str/<str:info>', get_path_str),
+    path('update_path/', update_all_path)
 ]

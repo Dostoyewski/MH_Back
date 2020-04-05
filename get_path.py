@@ -2,7 +2,7 @@ import requests
 import datetime
 from pyquery import PyQuery as pq
 
-url = "https://cdn.pamyat-naroda.ru/ind/pamyat/map_army_unit_label/_search/"
+url = "https://cdn.pamyat-naroda.ru/data/sEaoDXxYS9_qVX9O9MxYKw/1586072535/pamyat/map_army_unit_label/_search/"
 
 headers = {
     'origin': 'https://pamyat-naroda.ru',
@@ -71,4 +71,4 @@ def get_path(army_name):
 
 
 if __name__ == "__main__":
-    get_path('qwe')
+    print(get_path('123 тбр'))

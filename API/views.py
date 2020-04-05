@@ -7,6 +7,7 @@ from API.permissions import IsOwnerOrReadOnly
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from get_path import get_path
 
 
 class UserCreateView(generics.CreateAPIView):
@@ -272,3 +273,48 @@ def get_heroes(request, pk):
             response.append(data)
         return Response(response)
 
+
+@api_view(['GET'])
+def get_path_pk(request, pk):
+    """
+    This function returns army path
+    :param request: request
+    :param pk: object id
+    :return: path
+    """
+    info = Hero.objects.get(pk=pk).army_name
+    try:
+        return Response(get_path(info))
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+def get_path_str(request, info):
+    """
+    This function returns army unit path
+    :param request: request
+    :param info: army unit name
+    :return: JSON with path
+    """
+    try:
+        return Response(get_path(info))
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+def update_all_path(request):
+    """
+    This function will update path field for all heroes
+    :param request: request
+    :return: 200 if OK, 503 if FAIL
+    """
+    heroes = Hero.objects.all()
+    try:
+        for hero in heroes:
+            hero.path = get_path(hero.army_name)
+            hero.save(force_update=True)
+        return Response(status=status.HTTP_200_OK)
+    except:
+        return Response(status=status.HTTP_503_SERVICE_UNAVAILABLE)

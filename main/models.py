@@ -42,7 +42,7 @@ class Hero(models.Model):
     # Military unit short name
     army_name_short = models.CharField(max_length=10, blank=True, unique=False)
     # Path of Ded's military unit
-    path = models.TextField(max_length=1000, blank=True, unique=False)
+    path = models.TextField(max_length=5000, blank=True, unique=False)
 
 
 class Photo(models.Model):

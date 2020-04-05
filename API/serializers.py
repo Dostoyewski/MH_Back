@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from main.models import User, Hero, Photo, Comment, Post
+from get_path import get_path
 
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -48,6 +49,7 @@ class HeroDetailSerializer(serializers.ModelSerializer):
         :param validated_data: request data
         :return: new `Hero` instance
         """
+        validated_data['path'] = get_path(validated_data['army_name'])
         return Hero.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
