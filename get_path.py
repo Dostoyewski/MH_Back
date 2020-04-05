@@ -2,7 +2,7 @@ import requests
 import datetime
 from pyquery import PyQuery as pq
 
-url = "https://cdn.pamyat-naroda.ru/data/sEaoDXxYS9_qVX9O9MxYKw/1586072535/pamyat/map_army_unit_label/_search/"
+url = "https://cdn.pamyat-naroda.ru/data/CiS7ta8gzdGMQtiPNrEY3g/1586077193/pamyat/map_army_unit_label/_search"
 
 headers = {
     'origin': 'https://pamyat-naroda.ru',

@@ -318,3 +318,13 @@ def update_all_path(request):
         return Response(status=status.HTTP_200_OK)
     except:
         return Response(status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+@api_view(['GET'])
+def get_last_heroes(request, offset, num):
+    heroes = Hero.objects.all()
+    n = len(heroes) - offset
+    try:
+        heroes = heroes[n-num:n]
+        return Response(HeroSerializer(heroes, many=True).data)
+    except AssertionError or IndexError:
+        return Response(status=status.HTTP_400_BAD_REQUEST)

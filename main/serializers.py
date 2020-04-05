@@ -48,6 +48,7 @@ class HeroSerializer(serializers.Serializer):
     army_name_short = serializers.CharField(default='Не задано')
     bd = serializers.DateField(read_only=True)
     dd = serializers.DateField(read_only=True)
+    path = serializers.CharField(read_only=True)
 
     def create(self, validated_data):
         """

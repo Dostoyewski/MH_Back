@@ -100,36 +100,6 @@ class PhotoDetailSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-class PhotoDetailSerializer(serializers.ModelSerializer):
-    """
-    Serializer for photos and information about it
-    """
-    class Meta:
-        model = Photo
-        fields = '__all__'
-
-    def create(self, validated_data):
-        """
-        Create a new `Photo` instance
-        :param validated_data: request data
-        :return: new `Photo` instance
-        """
-        return Photo.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        """
-        Update current `Photo` instance
-        :param instance: existing `Photo` instance
-        :param validated_data: request data
-        :return: updated `Photo` instance
-        """
-        instance.img = validated_data.get('img', instance.img)
-        instance.year = validated_data.get('year', instance.year)
-        instance.isAvatar = validated_data.get('isAvatar', instance.isAvatar)
-        instance.save()
-        return instance
-
-
 
 class PostDetailSerializer(serializers.ModelSerializer):
     """
