@@ -144,9 +144,7 @@ class CommentSerializer(serializers.Serializer):
     """
     id = serializers.IntegerField(read_only=True)
     text = serializers.CharField(default='Не задано')
-    hero = serializers.CharField(source='hero.pk', read_only=True)
-    urlVK = serializers.CharField(source='urlVK.pk', read_only=True)
-
+    user = serializers.CharField(source='user.urlVK', read_only=True)
 
     def create(self, validated_data):
         """

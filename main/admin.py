@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Hero, Photo
+from .models import User, Hero, Photo, Post, Comment
 
 
 # Register your models here.
@@ -15,9 +15,21 @@ class HeroAdmin(admin.ModelAdmin):
 
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ('img', 'year', 'hero', 'isAvatar')
-    list_display = ['img', 'year', 'hero', 'isAvatar']
+    search_fields = ['img', 'year', 'hero', 'isAvatar']
+
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('hero', 'like')
+    search_fields = ['hero', 'like']
+
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('post', 'user', 'text')
+    search_fields = ['post', 'user', 'text']
 
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Hero, HeroAdmin)
 admin.site.register(Photo, PhotoAdmin)
+admin.site.register(Post, PostAdmin)
+admin.site.register(Comment, CommentAdmin)

@@ -69,5 +69,5 @@ class Comment(models.Model):
     Comment post
     """
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    urlVK = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
