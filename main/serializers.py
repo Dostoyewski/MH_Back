@@ -46,6 +46,8 @@ class HeroSerializer(serializers.Serializer):
     info = serializers.CharField(default='Не задано')
     army_name = serializers.CharField(default='Не задано')
     army_name_short = serializers.CharField(default='Не задано')
+    bd = serializers.DateField(read_only=True)
+    dd = serializers.DateField(read_only=True)
 
     def create(self, validated_data):
         """
@@ -69,6 +71,8 @@ class HeroSerializer(serializers.Serializer):
         instance.info = validated_data.get('info', instance.info)
         instance.army_name = validated_data.get('army_name', instance.army_name)
         instance.army_name_short = validated_data.get('army_name_short', instance.army_name_short)
+        instance.bd = validated_data.get('bd', instance.bd)
+        instance.dd = validated_data.get('dd', instance.dd)
         instance.save()
         return instance
 
